@@ -1,4 +1,23 @@
 = EEBUS Json Schemas
 
 The XSD files included with the EEBUS protocol specification give a wrong picture of what the JSON messages look like.
+To be more precise, the object types are displayed incorrectly.
+It is described that elements with subelements are simple objects.
+It is described as something like this:
+
+[source,json]
+----
+{"connectionHello":{"phase":"pending","waiting":60000}}
+----
+
+But actually this message looks like this:
+
+[source,json]
+----
+{"connectionHello":[{"phase":"pending"},{"waiting":60000}]}
+----
+
+So elements with subelements are not simple objects.
+They are lists of objects where each list item contains a subelement.
+
 For this reason, I have created a collection of JSON schema files here, which can also be used to create source code.
