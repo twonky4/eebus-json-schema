@@ -21,3 +21,8 @@ So elements with subelements are not simple objects.
 They are lists of objects where each list item contains a subelement.
 
 For this reason, I have created a collection of JSON schema files here, which can also be used to create source code.
+
+== Status
+
+* SHIP: finished
+* SPINE: work in progress

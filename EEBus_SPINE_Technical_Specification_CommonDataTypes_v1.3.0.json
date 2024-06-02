@@ -298,8 +298,8 @@
 		"DeviceAddressType": {
 			"type": "object",
 			"properties": {
-				"ns_p:device": {
-					"$ref": "#/definitions/device"
+				"device": {
+					"$ref": "#/definitions/AddressDeviceType"
 				}
 			},
 			"additionalProperties": false
@@ -324,10 +324,10 @@
 					{
 						"type": "object",
 						"properties": {
-							"ns_p:entity": {
+							"entity": {
 								"type": "array",
 								"items": {
-									"$ref": "#/definitions/entity"
+									"$ref": "#/definitions/AddressEntityType"
 								}
 							}
 						},
@@ -368,8 +368,8 @@
 					{
 						"type": "object",
 						"properties": {
-							"ns_p:feature": {
-								"$ref": "#/definitions/feature"
+							"feature": {
+								"$ref": "#/definitions/AddressFeatureType"
 							}
 						},
 						"additionalProperties": true,
@@ -1489,15 +1489,6 @@
 				"electricalConnectionCharacteristicListData",
 				"stateInformationListData"
 			]
-		},
-		"device": {
-			"$ref": "#/definitions/AddressDeviceType"
-		},
-		"entity": {
-			"$ref": "#/definitions/AddressEntityType"
-		},
-		"feature": {
-			"$ref": "#/definitions/AddressFeatureType"
 		}
 	}
 }
