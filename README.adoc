@@ -1,0 +1,4 @@
+= eebus-json-schema
+
+The XSD files included with the EEBUS protocol specification give a wrong picture of what the JSON messages look like.
+For this reason, I have created a collection of JSON schema files here, which can also be used to create source code.

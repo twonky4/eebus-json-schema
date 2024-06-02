@@ -1,0 +1,314 @@
+{
+	"title": "EEBus SHIP Technical Specification Transfer Protocol v1.0.1",
+	"$schema": "http://json-schema.org/schema#",
+	"type": "object",
+	"properties": {
+		"msgTypeInitGroup": {
+		    "type": "object",
+		    "description": "The websocket binary message will start with byte 0.",
+		    "additionalProperties": false
+		},
+		"msgTypeControlGroup": {
+			"type": "object",
+			"description": "The websocket binary message will start with byte 1.",
+			"properties": {
+				"connectionHello": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"phase": {
+								"type": "string",
+								"enum": [
+									"pending",
+									"ready",
+									"aborted"
+								]
+							},
+							"waiting": {
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 4294967295
+							},
+							"prolongationRequest": {
+								"type": "boolean"
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"messageProtocolHandshake": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"handshakeType": {
+								"type": "string",
+								"enum": [
+									"announceMax",
+									"select"
+								]
+							},
+							"version": {
+								"type": "array",
+								"minItems": 1,
+								"items": {
+									"type": "object",
+									"properties": {
+										"major": {
+											"type": "integer",
+											"minimum": 0,
+											"maximum": 65535
+										},
+										"minor": {
+											"type": "integer",
+											"minimum": 0,
+											"maximum": 65535
+										}
+									},
+									"additionalProperties": false
+								}
+							},
+							"formats": {
+								"type": "array",
+								"minItems": 1,
+								"items": {
+									"type": "object",
+									"properties": {
+										"format": {
+											"type": "array",
+											"minItems": 1,
+											"items": {
+												"type": "string"
+											}
+										}
+									},
+									"additionalProperties": false
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"messageProtocolHandshakeError": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"error": {
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 255
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"connectionPinState": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"pinState": {
+								"type": "string",
+								"enum": [
+									"required",
+									"optional",
+									"pinOk",
+									"none"
+								]
+							},
+							"inputPermission": {
+								"type": "string",
+								"enum": [
+									"busy",
+									"ok"
+								]
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"connectionPinInput": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"pin": {
+								"type": "string",
+								"pattern": "[0-9a-fA-F]{8,16}"
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"connectionPinError": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"error": {
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 255
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"accessMethodsRequest": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"accessMethods": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"id": {
+								"type": "string"
+							},
+							"dnsSd_mDns": {
+								"type": "string"
+							},
+							"dns": {
+								"type": "array",
+								"minItems": 1,
+								"items": {
+									"type": "object",
+									"properties": {
+										"uri": {
+											"type": "string"
+										},
+										"id": {
+											"type": "string"
+										},
+										"dnsSd_mDns": {
+											"type": "string"
+										},
+										"dns": {
+											"type": "array",
+											"minItems": 1,
+											"items": {
+												"type": "object",
+												"properties": {
+													"uri": {
+														"type": "string"
+													}
+												},
+												"additionalProperties": false
+											}
+										}
+									},
+									"additionalProperties": false
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"msgTypeDataGroup": {
+			"type": "object",
+			"description": "The websocket binary message will start with byte 2",
+			"properties": {
+				"data": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"header": {
+								"type": "array",
+								"minItems": 1,
+								"items": {
+									"type": "object",
+									"properties": {
+										"protocolId": {
+											"type": "string"
+										}
+									},
+									"additionalProperties": false
+								}
+							},
+							"payload": {
+							    "type": "object",
+								"description": "See SPINE Definition"
+							},
+							"extension": {
+								"type": "array",
+								"minItems": 1,
+								"items": {
+									"type": "object",
+									"properties": {
+										"extensionId": {
+											"type": "string"
+										},
+										"binary": {
+											"type": "string",
+											"format": "^[0-9,a-f,A-F]*"
+										},
+										"string": {
+											"type": "string"
+										}
+									},
+									"additionalProperties": false
+								}
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"msgTypeEndGroup": {
+			"type": "object",
+			"description": "The websocket binary message will start with byte 3",
+			"properties": {
+				"connectionClose": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"phase": {
+								"type": "string",
+								"enum": [
+									"announce",
+									"confirm"
+								]
+							},
+							"maxTime": {
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 4294967295
+							},
+							"reason": {
+								"type": "string",
+								"enum": [
+									"unspecific",
+									"removedConnection"
+								]
+							}
+						},
+						"additionalProperties": false
+					}
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"additionalProperties": false
+}
