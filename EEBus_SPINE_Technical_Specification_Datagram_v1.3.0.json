@@ -1,0 +1,89 @@
+{
+	"title": "EEBus SPINE Technical Specification Datagram v1.3.0",
+	"$schema": "http://json-schema.org/schema#",
+	"type": "object",
+	"additionalProperties": false,
+	"definitions": {
+		"HeaderType": {
+			"type": "object",
+			"properties": {
+				"specificationVersion": {
+					"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/SpecificationVersionType"
+				},
+				"addressSource": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/FeatureAddressType"
+					}
+				},
+				"addressDestination": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/FeatureAddressType"
+					}
+				},
+				"addressOriginator": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/FeatureAddressType"
+					}
+				},
+				"msgCounter": {
+					"$ref": "EEBus_SPINE_Technical_Specification_CommandFrame_v1.3.0.json#/definitions/MsgCounterType"
+				},
+				"msgCounterReference": {
+					"$ref": "EEBus_SPINE_Technical_Specification_CommandFrame_v1.3.0.json#/definitions/MsgCounterType"
+				},
+				"cmdClassifier": {
+					"$ref": "EEBus_SPINE_Technical_Specification_CommandFrame_v1.3.0.json#/definitions/CmdClassifierType"
+				},
+				"ackRequest": {
+					"type": "boolean"
+				},
+				"timestamp": {
+					"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/AbsoluteOrRelativeTimeType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"PayloadType": {
+			"type": "object",
+			"properties": {
+				"cmd": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"minItems": 1,
+						"items": {
+							"$ref": "EEBus_SPINE_Technical_Specification_CommandFrame_v1.3.0.json#/definitions/CmdType"
+						}
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"DatagramType": {
+			"type": "object",
+			"properties": {
+				"header": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/HeaderType"
+					}
+				},
+				"payload": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/PayloadType"
+					}
+				}
+			},
+			"additionalProperties": false
+		}
+	}
+}

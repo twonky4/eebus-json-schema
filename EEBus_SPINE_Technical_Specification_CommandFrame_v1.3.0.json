@@ -1,0 +1,119 @@
+{
+	"title": "EEBus SPINE Technical Specification CommandFrame v1.3.0",
+	"$schema": "http://json-schema.org/schema#",
+	"type": "object",
+	"additionalProperties": false,
+	"definitions": {
+		"MsgCounterType": {
+			"type": "integer",
+			"minimum": 0
+		},
+		"CmdClassifierType": {
+			"type": "string",
+			"enum": [
+				"read",
+				"reply",
+				"notify",
+				"write",
+				"call",
+				"result"
+			]
+		},
+		"FilterIdType": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 4294967295
+		},
+		"FilterType": {
+			"type": "object",
+			"properties": {
+				"allOf": [
+					{
+						"filterId": {
+							"$ref": "#/definitions/FilterIdType"
+						},
+						"cmdControl": {
+							"type": "array",
+							"minItems": 1,
+							"items": {
+								"$ref": "#/definitions/CmdControlType"
+							}
+						}
+					},
+					{
+						"$ref": "EEBus_SPINE_Technical_Specification_CommandCommonDefinitions_v1.3.0.json#/definitions/DataSelectorsChoiceGroup"
+					},
+					{
+						"$ref": "EEBus_SPINE_Technical_Specification_CommandCommonDefinitions_v1.3.0.json#/definitions/DataElementsChoiceGroup"
+					}
+				]
+			},
+			"additionalProperties": false
+		},
+		"CmdControlType": {
+			"type": "object",
+			"properties": {
+				"delete": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/ElementTagType"
+					}
+				},
+				"partial": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/ElementTagType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"CmdType": {
+			"type": "object",
+			"properties": {
+				"allOf": [
+					{
+						"$ref": "#/definitions/CmdOptionGroup"
+					},
+					{
+						"$ref": "EEBus_SPINE_Technical_Specification_CommandCommonDefinitions_v1.3.0.json#/definitions/DataChoiceGroup"
+					},
+					{
+						"$ref": "#/definitions/DataExtendGroup"
+					}
+				]
+			},
+			"additionalProperties": false
+		},
+		"CmdOptionGroup": {
+			"function": {
+				"type": "array",
+				"minItems": 1,
+				"items": {
+					"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/FunctionType"
+				}
+			},
+			"filter": {
+				"type": "array",
+				"items": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/FilterType"
+					}
+				}
+			}
+		},
+		"DataExtendGroup": {
+			"manufacturerSpecificExtension": {
+				"type": "string",
+				"format": "^[0-9,a-f,A-F]*"
+			},
+			"lastUpdateAt": {
+				"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/AbsoluteOrRelativeTimeType"
+			}
+		}
+	}
+}

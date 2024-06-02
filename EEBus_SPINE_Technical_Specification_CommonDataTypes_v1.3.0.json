@@ -1,0 +1,1503 @@
+{
+	"title": "EEBus SPINE Technical Specification CommonDataTypes v1.3.0",
+	"$schema": "http://json-schema.org/schema#",
+	"type": "object",
+	"additionalProperties": false,
+	"definitions": {
+		"ElementTagType": {
+			"type": "string"
+		},
+		"TimePeriodType": {
+			"type": "object",
+			"properties": {
+				"startTime": {
+					"$ref": "#/definitions/AbsoluteOrRelativeTimeType"
+				},
+				"endTime": {
+					"$ref": "#/definitions/AbsoluteOrRelativeTimeType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"TimePeriodElementsType": {
+			"type": "object",
+			"properties": {
+				"startTime": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"endTime": {
+					"$ref": "#/definitions/ElementTagType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"TimestampIntervalType": {
+			"type": "object",
+			"properties": {
+				"startTime": {
+					"$ref": "#/definitions/AbsoluteOrRelativeTimeType"
+				},
+				"endTime": {
+					"$ref": "#/definitions/AbsoluteOrRelativeTimeType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"DaysOfWeekType": {
+			"type": "object",
+			"properties": {
+				"monday": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"tuesday": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"wednesday": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"thursday": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"friday": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"saturday": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"sunday": {
+					"$ref": "#/definitions/ElementTagType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"AbsoluteOrRecurringTimeType": {
+			"type": "object",
+			"properties": {
+				"dateTime": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"month": {
+					"$ref": "#/definitions/MonthType"
+				},
+				"dayOfMonth": {
+					"$ref": "#/definitions/DayOfMonthType"
+				},
+				"calendarWeek": {
+					"$ref": "#/definitions/CalendarWeekType"
+				},
+				"dayOfWeekOccurrence": {
+					"$ref": "#/definitions/OccurrenceType"
+				},
+				"daysOfWeek": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/DaysOfWeekType"
+					}
+				},
+				"time": {
+					"type": "string",
+					"pattern": "^[0-9]{2}:[0-9]{2}:[0-9]{2}.*$"
+				},
+				"relative": {
+					"type": "string",
+					"pattern": "^(-)?P(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)W)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?$"
+				}
+			},
+			"additionalProperties": false
+		},
+		"AbsoluteOrRecurringTimeElementsType": {
+			"type": "object",
+			"properties": {
+				"dateTime": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"month": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"dayOfMonth": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"calendarWeek": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"dayOfWeekOccurrence": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"daysOfWeek": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"time": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"relative": {
+					"$ref": "#/definitions/ElementTagType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"RecurrenceInformationType": {
+			"type": "object",
+			"properties": {
+				"recurringInterval": {
+					"$ref": "#/definitions/RecurringIntervalType"
+				},
+				"recurringIntervalStep": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 4294967295
+				},
+				"firstExecution": {
+					"type": "string",
+					"format": "date-time"
+				},
+				"executionCount": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 4294967295
+				},
+				"lastExecution": {
+					"type": "string",
+					"format": "date-time"
+				}
+			},
+			"additionalProperties": false
+		},
+		"RecurrenceInformationElementsType": {
+			"type": "object",
+			"properties": {
+				"recurringInterval": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"recurringIntervalStep": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"firstExecution": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"executionCount": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"lastExecution": {
+					"$ref": "#/definitions/ElementTagType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"ScaledNumberRangeType": {
+			"type": "object",
+			"properties": {
+				"min": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/ScaledNumberType"
+					}
+				},
+				"max": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/ScaledNumberType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"ScaledNumberRangeElementsType": {
+			"type": "object",
+			"properties": {
+				"min": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/ScaledNumberElementsType"
+					}
+				},
+				"max": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/ScaledNumberElementsType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"ScaledNumberSetType": {
+			"type": "object",
+			"properties": {
+				"value": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"minItems": 1,
+						"items": {
+							"$ref": "#/definitions/ScaledNumberType"
+						}
+					}
+				},
+				"range": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"minItems": 1,
+						"items": {
+							"$ref": "#/definitions/ScaledNumberRangeType"
+						}
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"ScaledNumberSetElementsType": {
+			"type": "object",
+			"properties": {
+				"value": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/ScaledNumberElementsType"
+					}
+				},
+				"range": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/ScaledNumberRangeElementsType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"ScaledNumberType": {
+			"type": "object",
+			"properties": {
+				"number": {
+					"$ref": "#/definitions/NumberType"
+				},
+				"scale": {
+					"$ref": "#/definitions/ScaleType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"ScaledNumberElementsType": {
+			"type": "object",
+			"properties": {
+				"number": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"scale": {
+					"$ref": "#/definitions/ElementTagType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"DeviceAddressType": {
+			"type": "object",
+			"properties": {
+				"ns_p:device": {
+					"$ref": "#/definitions/device"
+				}
+			},
+			"additionalProperties": false
+		},
+		"DeviceAddressElementsType": {
+			"type": "object",
+			"properties": {
+				"device": {
+					"$ref": "#/definitions/ElementTagType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"EntityAddressType": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"allOf": [
+					{
+						"$ref": "#/definitions/DeviceAddressType"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"ns_p:entity": {
+								"type": "array",
+								"items": {
+									"$ref": "#/definitions/entity"
+								}
+							}
+						},
+						"additionalProperties": true
+					}
+				]
+			}
+		},
+		"EntityAddressElementsType": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"allOf": [
+					{
+						"$ref": "#/definitions/DeviceAddressElementsType"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"entity": {
+								"$ref": "#/definitions/ElementTagType"
+							}
+						},
+						"additionalProperties": true,
+						"$ref": "#/definitions/ElementTagType"
+					}
+				]
+			}
+		},
+		"FeatureAddressType": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"allOf": [
+					{
+						"$ref": "#/definitions/EntityAddressType"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"ns_p:feature": {
+								"$ref": "#/definitions/feature"
+							}
+						},
+						"additionalProperties": true,
+						"$ref": "#/definitions/feature"
+					}
+				]
+			}
+		},
+		"FeatureAddressElementsType": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"allOf": [
+					{
+						"$ref": "#/definitions/EntityAddressElementsType"
+					},
+					{
+						"type": "object",
+						"properties": {
+							"feature": {
+								"$ref": "#/definitions/ElementTagType"
+							}
+						},
+						"additionalProperties": true,
+						"$ref": "#/definitions/ElementTagType"
+					}
+				]
+			}
+		},
+		"PossibleOperationsClassifierType": {
+			"type": "object",
+			"properties": {
+				"partial": {
+					"$ref": "#/definitions/ElementTagType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"PossibleOperationsReadType": {
+			"allOf": [
+				{
+					"$ref": "#/definitions/PossibleOperationsClassifierType"
+				},
+				{
+					"type": "string"
+				}
+			]
+		},
+		"PossibleOperationsWriteType": {
+			"allOf": [
+				{
+					"$ref": "#/definitions/PossibleOperationsClassifierType"
+				},
+				{
+					"type": "string"
+				}
+			]
+		},
+		"PossibleOperationsType": {
+			"type": "object",
+			"properties": {
+				"read": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/PossibleOperationsReadType"
+					}
+				},
+				"write": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/PossibleOperationsWriteType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"PossibleOperationsElementsType": {
+			"type": "object",
+			"properties": {
+				"read": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"write": {
+					"$ref": "#/definitions/ElementTagType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"FunctionPropertyType": {
+			"type": "object",
+			"properties": {
+				"function": {
+					"$ref": "#/definitions/FunctionType"
+				},
+				"possibleOperations": {
+					"$ref": "#/definitions/PossibleOperationsType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"FunctionPropertyElementsType": {
+			"type": "object",
+			"properties": {
+				"function": {
+					"$ref": "#/definitions/ElementTagType"
+				},
+				"possibleOperations": {
+					"$ref": "#/definitions/PossibleOperationsElementsType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"LabelType": {
+			"type": "string"
+		},
+		"DescriptionType": {
+			"type": "string"
+		},
+		"SpecificationVersionType": {
+			"type": "string",
+			"maxLength": 128,
+			"pattern": "[1-9][0-9]*\\.[0-9]+\\.[0-9]+"
+		},
+		"EnumExtendType": {
+			"type": "string",
+			"maxLength": 256,
+			"pattern": "_(i:[1-9][0-9]*|n:[a-zA-Z0-9-]+)_[^\\p{Cc}\\p{Cf}\\p{Z}]+"
+		},
+		"AbsoluteOrRelativeTimeType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"type": "string",
+					"pattern": "^(-)?P(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)W)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?$"
+				},
+				{
+					"type": "string",
+					"format": "date-time"
+				}
+			],
+			"additionalProperties": false
+		},
+		"RecurringIntervalType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/RecurringIntervalEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"RecurringIntervalEnumType": {
+			"type": "string",
+			"enum": [
+				"yearly",
+				"monthly",
+				"weekly",
+				"daily",
+				"hourly",
+				"everyMinute",
+				"everySecond"
+			]
+		},
+		"MonthType": {
+			"type": "string",
+			"enum": [
+				"january",
+				"february",
+				"march",
+				"april",
+				"may",
+				"june",
+				"july",
+				"august",
+				"september",
+				"october",
+				"november",
+				"december"
+			]
+		},
+		"DayOfMonthType": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 255
+		},
+		"CalendarWeekType": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 255
+		},
+		"DayOfWeekType": {
+			"type": "string",
+			"enum": [
+				"monday",
+				"tuesday",
+				"wednesday",
+				"thursday",
+				"friday",
+				"saturday",
+				"sunday"
+			]
+		},
+		"OccurrenceType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/OccurrenceEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"OccurrenceEnumType": {
+			"type": "string",
+			"enum": [
+				"first",
+				"second",
+				"third",
+				"fourth",
+				"last"
+			]
+		},
+		"NumberType": {
+			"type": "integer"
+		},
+		"ScaleType": {
+			"type": "integer",
+			"maximum": 32767,
+			"minimum": -32768
+		},
+		"MaxResponseDelayType": {
+			"type": "string",
+			"pattern": "^(-)?P(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)W)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?$"
+		},
+		"CommodityTypeType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/CommodityTypeEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"CommodityTypeEnumType": {
+			"type": "string",
+			"enum": [
+				"electricity",
+				"gas",
+				"oil",
+				"water",
+				"wasteWater",
+				"domesticHotWater",
+				"heatingWater",
+				"steam",
+				"heat",
+				"coolingLoad",
+				"air"
+			]
+		},
+		"EnergyDirectionType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/EnergyDirectionEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"EnergyDirectionEnumType": {
+			"type": "string",
+			"enum": [
+				"consume",
+				"produce"
+			]
+		},
+		"EnergyModeType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/EnergyModeEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"EnergyModeEnumType": {
+			"type": "string",
+			"enum": [
+				"consume",
+				"produce",
+				"idle",
+				"auto"
+			]
+		},
+		"UnitOfMeasurementType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/UnitOfMeasurementEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"UnitOfMeasurementEnumType": {
+			"type": "string",
+			"enum": [
+				"unknown",
+				"1",
+				"m",
+				"kg",
+				"s",
+				"A",
+				"K",
+				"mol",
+				"cd",
+				"V",
+				"W",
+				"Wh",
+				"VA",
+				"VAh",
+				"var",
+				"varh",
+				"degC",
+				"degF",
+				"Lm",
+				"lx",
+				"Ohm",
+				"Hz",
+				"dB",
+				"dBm",
+				"pct",
+				"ppm",
+				"l",
+				"l/s",
+				"l/h",
+				"deg",
+				"rad",
+				"rad/s",
+				"sr",
+				"Gy",
+				"Bq",
+				"Bq/m^3",
+				"Sv",
+				"Rd",
+				"C",
+				"F",
+				"H",
+				"J",
+				"N",
+				"N_m",
+				"N_s",
+				"Wb",
+				"T",
+				"Pa",
+				"bar",
+				"atm",
+				"psi",
+				"mmHg",
+				"m^2",
+				"m^3",
+				"m^3/h",
+				"m/s",
+				"m/s^2",
+				"m^3/s",
+				"m/m^3",
+				"kg/m^3",
+				"kg_m",
+				"m^2/s",
+				"W/m_K",
+				"J/K",
+				"1/s",
+				"W/m^2",
+				"J/m^2",
+				"S",
+				"S/m",
+				"K/s",
+				"Pa/s",
+				"J/kg_K",
+				"Vs",
+				"V/m",
+				"V/Hz",
+				"As",
+				"A/m",
+				"Hz/s",
+				"kg/s",
+				"kg_m^2",
+				"J/Wh",
+				"W/s",
+				"ft^3",
+				"ft^3/h",
+				"ccf",
+				"ccf/h",
+				"US.liq.gal",
+				"US.liq.gal/h",
+				"Imp.gal",
+				"Imp.gal/h",
+				"Btu",
+				"Btu/h",
+				"Ah",
+				"kg/Wh"
+			]
+		},
+		"CurrencyType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/CurrencyEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"CurrencyEnumType": {
+			"type": "string",
+			"enum": [
+				"AED",
+				"AFN",
+				"ALL",
+				"AMD",
+				"ANG",
+				"AOA",
+				"ARS",
+				"AUD",
+				"AWG",
+				"AZN",
+				"BAM",
+				"BBD",
+				"BDT",
+				"BGN",
+				"BHD",
+				"BIF",
+				"BMD",
+				"BND",
+				"BOB",
+				"BOV",
+				"BRL",
+				"BSD",
+				"BTN",
+				"BWP",
+				"BYR",
+				"BZD",
+				"CAD",
+				"CDF",
+				"CHE",
+				"CHF",
+				"CHW",
+				"CLF",
+				"CLP",
+				"CNY",
+				"COP",
+				"COU",
+				"CRC",
+				"CUC",
+				"CUP",
+				"CVE",
+				"CZK",
+				"DJF",
+				"DKK",
+				"DOP",
+				"DZD",
+				"EGP",
+				"ERN",
+				"ETB",
+				"EUR",
+				"FJD",
+				"FKP",
+				"GBP",
+				"GEL",
+				"GHS",
+				"GIP",
+				"GMD",
+				"GNF",
+				"GTQ",
+				"GYD",
+				"HKD",
+				"HNL",
+				"HRK",
+				"HTG",
+				"HUF",
+				"IDR",
+				"ILS",
+				"INR",
+				"IQD",
+				"IRR",
+				"ISK",
+				"JMD",
+				"JOD",
+				"JPY",
+				"KES",
+				"KGS",
+				"KHR",
+				"KMF",
+				"KPW",
+				"KRW",
+				"KWD",
+				"KYD",
+				"KZT",
+				"LAK",
+				"LBP",
+				"LKR",
+				"LRD",
+				"LSL",
+				"LYD",
+				"MAD",
+				"MDL",
+				"MGA",
+				"MKD",
+				"MMK",
+				"MNT",
+				"MOP",
+				"MRO",
+				"MUR",
+				"MVR",
+				"MWK",
+				"MXN",
+				"MXV",
+				"MYR",
+				"MZN",
+				"NAD",
+				"NGN",
+				"NIO",
+				"NOK",
+				"NPR",
+				"NZD",
+				"OMR",
+				"PAB",
+				"PEN",
+				"PGK",
+				"PHP",
+				"PKR",
+				"PLN",
+				"PYG",
+				"QAR",
+				"RON",
+				"RSD",
+				"RUB",
+				"RWF",
+				"SAR",
+				"SBD",
+				"SCR",
+				"SDG",
+				"SEK",
+				"SGD",
+				"SHP",
+				"SLL",
+				"SOS",
+				"SRD",
+				"SSP",
+				"STD",
+				"SVC",
+				"SYP",
+				"SZL",
+				"THB",
+				"TJS",
+				"TMT",
+				"TND",
+				"TOP",
+				"TRY",
+				"TTD",
+				"TWD",
+				"TZS",
+				"UAH",
+				"UGX",
+				"USD",
+				"USN",
+				"UYI",
+				"UYU",
+				"UZS",
+				"VEF",
+				"VND",
+				"VUV",
+				"WST",
+				"XAF",
+				"XAG",
+				"XAU",
+				"XBA",
+				"XBB",
+				"XBC",
+				"XBD",
+				"XCD",
+				"XDR",
+				"XOF",
+				"XPD",
+				"XPF",
+				"XPT",
+				"XSU",
+				"XTS",
+				"XUA",
+				"XXX",
+				"YER",
+				"ZAR",
+				"ZMW",
+				"ZWL"
+			]
+		},
+		"AddressDeviceType": {
+			"type": "string",
+			"maxLength": 256,
+			"pattern": "d:_(i:[1-9][0-9]*|n:[a-zA-Z0-9-]+)_[^\\p{Cc}\\p{Cf}\\p{Z}]+"
+		},
+		"AddressEntityType": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 4294967295
+		},
+		"AddressFeatureType": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 4294967295
+		},
+		"ScopeTypeType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/ScopeTypeEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"ScopeTypeEnumType": {
+			"type": "string",
+			"enum": [
+				"ac",
+				"acCosPhiGrid",
+				"acCurrentA",
+				"acCurrentB",
+				"acCurrentC",
+				"acFrequencyGrid",
+				"acPowerA",
+				"acPowerB",
+				"acPowerC",
+				"acPowerLimitPct",
+				"acPowerTotal",
+				"acVoltageA",
+				"acVoltageB",
+				"acVoltageC",
+				"acYieldDay",
+				"acYieldTotal",
+				"dcCurrent",
+				"dcPower",
+				"dcString1",
+				"dcString2",
+				"dcString3",
+				"dcString4",
+				"dcString5",
+				"dcString6",
+				"dcTotal",
+				"dcVoltage",
+				"dhwTemperature",
+				"flowTemperature",
+				"outsideAirTemperature",
+				"returnTemperature",
+				"roomAirTemperature",
+				"charge",
+				"stateOfCharge",
+				"discharge",
+				"gridConsumption",
+				"gridFeedIn",
+				"selfConsumption",
+				"overloadProtection",
+				"acPower",
+				"acEnergy",
+				"acCurrent",
+				"acVoltage",
+				"batteryControl",
+				"simpleIncentiveTable",
+				"stateOfHealth",
+				"travelRange",
+				"nominalEnergyCapacity",
+				"acPowerReal",
+				"acPowerApparent",
+				"acPowerReactive",
+				"acYieldMonth",
+				"acYieldYear",
+				"acFrequency",
+				"acCosPhi",
+				"dcEnergy",
+				"insulationResistance",
+				"stateOfEnergy",
+				"useableCapacity",
+				"dcChargeEnergy",
+				"dcDischargeEnergy",
+				"loadCycleCount",
+				"componentTemperature",
+				"gridLimit",
+				"gridLimitFallback",
+				"acPowerApparentTotal",
+				"acPowerReactiveTotal",
+				"acCurrentTotal",
+				"acEnergyConsumed",
+				"acEnergyProduced",
+				"batteryAcPower",
+				"batteryAcPowerPhaseSpecific",
+				"batteryDcPower",
+				"pccPower",
+				"activePowerLimit",
+				"activePowerLimitPercentage",
+				"simpleCommittedIncentiveTable",
+				"simplePreliminaryIncentiveTable",
+				"committedPowerPlan",
+				"preliminaryPowerPlan",
+				"incentiveTableEnConsWithPoETF",
+				"incentiveTableEnProdWithPoETF",
+				"incentiveTableEnConsWithPoE",
+				"incentiveTableEnProdWithPoE",
+				"incentiveTableEnConsWithTF",
+				"incentiveTableEnProdWithTF",
+				"activePowerForecast"
+			]
+		},
+		"RoleType": {
+			"type": "string",
+			"enum": [
+				"client",
+				"server",
+				"special"
+			]
+		},
+		"FeatureGroupType": {
+			"type": "string",
+			"maxLength": 128,
+			"pattern": "(#[1-9][0-9]*)*"
+		},
+		"DeviceTypeType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/DeviceTypeEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"DeviceTypeEnumType": {
+			"type": "string",
+			"enum": [
+				"Dishwasher",
+				"Dryer",
+				"EnvironmentSensor",
+				"Generic",
+				"HeatGenerationSystem",
+				"HeatSinkSystem",
+				"HeatStorageSystem",
+				"HVACController",
+				"SubMeter",
+				"Washer",
+				"ElectricitySupplySystem",
+				"EnergyManagementSystem",
+				"Inverter",
+				"ChargingStation"
+			]
+		},
+		"EntityTypeType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/EntityTypeEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"EntityTypeEnumType": {
+			"type": "string",
+			"enum": [
+				"Battery",
+				"Compressor",
+				"DeviceInformation",
+				"DHWCircuit",
+				"DHWStorage",
+				"Dishwasher",
+				"Dryer",
+				"ElectricalImmersionHeater",
+				"Fan",
+				"GasHeatingAppliance",
+				"Generic",
+				"HeatingBufferStorage",
+				"HeatingCircuit",
+				"HeatingObject",
+				"HeatingZone",
+				"HeatPumpAppliance",
+				"HeatSinkCircuit",
+				"HeatSourceCircuit",
+				"HeatSourceUnit",
+				"HVACController",
+				"HVACRoom",
+				"InstantDHWHeater",
+				"Inverter",
+				"OilHeatingAppliance",
+				"Pump",
+				"RefrigerantCircuit",
+				"SmartEnergyAppliance",
+				"SolarDHWStorage",
+				"SolarThermalCircuit",
+				"SubMeterElectricity",
+				"TemperatureSensor",
+				"Washer",
+				"BatterySystem",
+				"ElectricityGenerationSystem",
+				"ElectricityStorageSystem",
+				"GridConnectionPointOfPremises",
+				"Household",
+				"PVSystem",
+				"EV",
+				"EVSE",
+				"ChargingOutlet",
+				"CEM",
+				"PV",
+				"PVESHybrid",
+				"ElectricalStorage",
+				"PVString",
+				"GridGuard",
+				"ControllableSystem"
+			]
+		},
+		"FeatureTypeType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/FeatureTypeEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"FeatureTypeEnumType": {
+			"type": "string",
+			"enum": [
+				"ActuatorLevel",
+				"ActuatorSwitch",
+				"Alarm",
+				"DataTunneling",
+				"DeviceClassification",
+				"DeviceDiagnosis",
+				"DirectControl",
+				"ElectricalConnection",
+				"Generic",
+				"HVAC",
+				"LoadControl",
+				"Measurement",
+				"Messaging",
+				"NetworkManagement",
+				"NodeManagement",
+				"OperatingConstraints",
+				"PowerSequences",
+				"Sensing",
+				"Setpoint",
+				"SmartEnergyManagementPs",
+				"TaskManagement",
+				"Threshold",
+				"TimeInformation",
+				"TimeTable",
+				"DeviceConfiguration",
+				"SupplyCondition",
+				"TimeSeries",
+				"TariffInformation",
+				"IncentiveTable",
+				"Bill",
+				"Identification",
+				"StateInformation"
+			]
+		},
+		"FeatureSpecificUsageType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/FeatureSpecificUsageEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"FeatureSpecificUsageEnumType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/FeatureDirectControlSpecificUsageEnumType"
+				},
+				{
+					"$ref": "#/definitions/FeatureHvacSpecificUsageEnumType"
+				},
+				{
+					"$ref": "#/definitions/FeatureMeasurementSpecificUsageEnumType"
+				},
+				{
+					"$ref": "#/definitions/FeatureSetpointSpecificUsageEnumType"
+				},
+				{
+					"$ref": "#/definitions/FeatureSmartEnergyManagementPsSpecificUsageEnumType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"FeatureDirectControlSpecificUsageEnumType": {
+			"type": "string",
+			"enum": [
+				"History",
+				"RealTime"
+			]
+		},
+		"FeatureHvacSpecificUsageEnumType": {
+			"type": "string",
+			"enum": [
+				"OperationMode",
+				"Overrun"
+			]
+		},
+		"FeatureMeasurementSpecificUsageEnumType": {
+			"type": "string",
+			"enum": [
+				"Contact",
+				"Electrical",
+				"Heat",
+				"Level",
+				"Pressure",
+				"Temperature"
+			]
+		},
+		"FeatureSetpointSpecificUsageEnumType": {
+			"$ref": "#/definitions/FeatureMeasurementSpecificUsageEnumType"
+		},
+		"FeatureSmartEnergyManagementPsSpecificUsageEnumType": {
+			"type": "string",
+			"enum": [
+				"FixedForecast",
+				"FlexibleChosenForecast",
+				"FlexibleOptionalForecast",
+				"OptionalSequenceBasedImmediateControl"
+			]
+		},
+		"FunctionType": {
+			"type": "object",
+			"oneOf": [
+				{
+					"$ref": "#/definitions/FunctionEnumType"
+				},
+				{
+					"$ref": "#/definitions/EnumExtendType"
+				}
+			],
+			"additionalProperties": false
+		},
+		"FunctionEnumType": {
+			"type": "string",
+			"enum": [
+				"actuatorLevelData",
+				"actuatorLevelDescriptionData",
+				"actuatorSwitchData",
+				"actuatorSwitchDescriptionData",
+				"alarmListData",
+				"bindingManagementDeleteCall",
+				"bindingManagementEntryListData",
+				"bindingManagementRequestCall",
+				"dataTunnelingCall",
+				"deviceClassificationManufacturerData",
+				"deviceClassificationUserData",
+				"deviceDiagnosisHeartbeatData",
+				"deviceDiagnosisServiceData",
+				"deviceDiagnosisStateData",
+				"directControlActivityListData",
+				"directControlDescriptionData",
+				"electricalConnectionDescriptionListData",
+				"electricalConnectionParameterDescriptionListData",
+				"electricalConnectionStateListData",
+				"hvacOperationModeDescriptionListData",
+				"hvacOverrunDescriptionListData",
+				"hvacOverrunListData",
+				"hvacSystemFunctionDescriptionListData",
+				"hvacSystemFunctionListData",
+				"hvacSystemFunctionOperationModeRelationListData",
+				"hvacSystemFunctionPowerSequenceRelationListData",
+				"hvacSystemFunctionSetpointRelationListData",
+				"loadControlEventListData",
+				"loadControlStateListData",
+				"measurementConstraintsListData",
+				"measurementDescriptionListData",
+				"measurementListData",
+				"measurementThresholdRelationListData",
+				"messagingListData",
+				"networkManagementAbortCall",
+				"networkManagementAddNodeCall",
+				"networkManagementDeviceDescriptionListData",
+				"networkManagementDiscoverCall",
+				"networkManagementEntityDescriptionListData",
+				"networkManagementFeatureDescriptionListData",
+				"networkManagementJoiningModeData",
+				"networkManagementModifyNodeCall",
+				"networkManagementProcessStateData",
+				"networkManagementRemoveNodeCall",
+				"networkManagementReportCandidateData",
+				"networkManagementScanNetworkCall",
+				"nodeManagementBindingData",
+				"nodeManagementBindingDeleteCall",
+				"nodeManagementBindingRequestCall",
+				"nodeManagementDestinationListData",
+				"nodeManagementDetailedDiscoveryData",
+				"nodeManagementSubscriptionData",
+				"nodeManagementSubscriptionDeleteCall",
+				"nodeManagementSubscriptionRequestCall",
+				"operatingConstraintsDurationListData",
+				"operatingConstraintsInterruptListData",
+				"operatingConstraintsPowerDescriptionListData",
+				"operatingConstraintsPowerLevelListData",
+				"operatingConstraintsPowerRangeListData",
+				"operatingConstraintsResumeImplicationListData",
+				"powerSequenceAlternativesRelationListData",
+				"powerSequenceDescriptionListData",
+				"powerSequenceNodeScheduleInformationData",
+				"powerSequencePriceCalculationRequestCall",
+				"powerSequencePriceListData",
+				"powerSequenceScheduleConfigurationRequestCall",
+				"powerSequenceScheduleConstraintsListData",
+				"powerSequenceScheduleListData",
+				"powerSequenceSchedulePreferenceListData",
+				"powerSequenceStateListData",
+				"powerTimeSlotScheduleConstraintsListData",
+				"powerTimeSlotScheduleListData",
+				"powerTimeSlotValueListData",
+				"resultData",
+				"sensingDescriptionData",
+				"sensingListData",
+				"sessionIdentificationListData",
+				"sessionMeasurementRelationListData",
+				"setpointConstraintsListData",
+				"setpointDescriptionListData",
+				"setpointListData",
+				"smartEnergyManagementPsConfigurationRequestCall",
+				"smartEnergyManagementPsData",
+				"smartEnergyManagementPsPriceCalculationRequestCall",
+				"smartEnergyManagementPsPriceData",
+				"specificationVersionListData",
+				"subscriptionManagementDeleteCall",
+				"subscriptionManagementEntryListData",
+				"subscriptionManagementRequestCall",
+				"supplyConditionDescriptionListData",
+				"supplyConditionListData",
+				"supplyConditionThresholdRelationListData",
+				"taskManagementJobDescriptionListData",
+				"taskManagementJobListData",
+				"taskManagementJobRelationListData",
+				"taskManagementOverviewData",
+				"thresholdConstraintsListData",
+				"thresholdDescriptionListData",
+				"thresholdListData",
+				"timeDistributorData",
+				"timeDistributorEnquiryCall",
+				"timeInformationData",
+				"timePrecisionData",
+				"timeTableConstraintsListData",
+				"timeTableDescriptionListData",
+				"timeTableListData",
+				"deviceConfigurationKeyValueConstraintsListData",
+				"deviceConfigurationKeyValueListData",
+				"deviceConfigurationKeyValueDescriptionListData",
+				"loadControlLimitConstraintsListData",
+				"loadControlLimitDescriptionListData",
+				"loadControlLimitListData",
+				"loadControlNodeData",
+				"timeSeriesConstraintsListData",
+				"timeSeriesDescriptionListData",
+				"timeSeriesListData",
+				"tariffOverallConstraintsData",
+				"tariffListData",
+				"tariffBoundaryRelationListData",
+				"tariffTierRelationListData",
+				"tariffDescriptionListData",
+				"tierBoundaryListData",
+				"tierBoundaryDescriptionListData",
+				"commodityListData",
+				"tierListData",
+				"tierIncentiveRelationListData",
+				"tierDescriptionListData",
+				"incentiveListData",
+				"incentiveDescriptionListData",
+				"incentiveTableData",
+				"incentiveTableDescriptionData",
+				"incentiveTableConstraintsData",
+				"electricalConnectionPermittedValueSetListData",
+				"useCaseInformationListData",
+				"nodeManagementUseCaseData",
+				"billConstraintsListData",
+				"billDescriptionListData",
+				"billListData",
+				"identificationListData",
+				"measurementSeriesListData",
+				"electricalConnectionCharacteristicListData",
+				"stateInformationListData"
+			]
+		},
+		"device": {
+			"$ref": "#/definitions/AddressDeviceType"
+		},
+		"entity": {
+			"$ref": "#/definitions/AddressEntityType"
+		},
+		"feature": {
+			"$ref": "#/definitions/AddressFeatureType"
+		}
+	}
+}
