@@ -3,12 +3,36 @@
 	"$schema": "http://json-schema.org/schema#",
 	"type": "object",
 	"properties": {
-		"msgTypeInitGroup": {
-		    "type": "object",
-		    "description": "The websocket binary message will start with byte 0.",
-		    "additionalProperties": false
+		"messageValueGroup": {
+			"$ref": "#/definitions/MessageValueGroup"
+		}
+	},
+	"additionalProperties": false,
+	"definitions": {
+		"MessageValueGroup": {
+			"type": "object",
+			"properties": {
+				"msgTypeInitGroup": {
+					"$ref": "#/definitions/MsgTypeInitGroup"
+				},
+				"msgTypeControlGroup": {
+					"$ref": "#/definitions/MsgTypeControlGroup"
+				},
+				"msgTypeDataGroup": {
+					"$ref": "#/definitions/MsgTypeDataGroup"
+				},
+				"msgTypeEndGroup": {
+					"$ref": "#/definitions/MsgTypeEndGroup"
+				}
+			},
+			"additionalProperties": false
 		},
-		"msgTypeControlGroup": {
+		"MsgTypeInitGroup": {
+			"type": "object",
+			"description": "The websocket binary message will start with byte 0.",
+			"additionalProperties": false
+		},
+		"MsgTypeControlGroup": {
 			"type": "object",
 			"description": "The websocket binary message will start with byte 1.",
 			"properties": {
@@ -16,164 +40,362 @@
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"type": "object",
-						"properties": {
-							"phase": {
-								"type": "string",
-								"enum": [
-									"pending",
-									"ready",
-									"aborted"
-								]
-							},
-							"waiting": {
-								"type": "integer",
-								"minimum": 0,
-								"maximum": 4294967295
-							},
-							"prolongationRequest": {
-								"type": "boolean"
-							}
-						},
-						"additionalProperties": false
+						"$ref": "#/definitions/ConnectionHelloType"
 					}
 				},
 				"messageProtocolHandshake": {
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"type": "object",
-						"properties": {
-							"handshakeType": {
-								"type": "string",
-								"enum": [
-									"announceMax",
-									"select"
-								]
-							},
-							"version": {
-								"type": "array",
-								"minItems": 1,
-								"items": {
-									"type": "object",
-									"properties": {
-										"major": {
-											"type": "integer",
-											"minimum": 0,
-											"maximum": 65535
-										},
-										"minor": {
-											"type": "integer",
-											"minimum": 0,
-											"maximum": 65535
-										}
-									},
-									"additionalProperties": false
-								}
-							},
-							"formats": {
-								"type": "array",
-								"minItems": 1,
-								"items": {
-									"type": "object",
-									"properties": {
-										"format": {
-											"type": "array",
-											"minItems": 1,
-											"items": {
-												"type": "string"
-											}
-										}
-									},
-									"additionalProperties": false
-								}
-							}
-						},
-						"additionalProperties": false
+						"$ref": "#/definitions/MessageProtocolHandshakeType"
 					}
 				},
 				"messageProtocolHandshakeError": {
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"type": "object",
-						"properties": {
-							"error": {
-								"type": "integer",
-								"minimum": 0,
-								"maximum": 255
-							}
-						},
-						"additionalProperties": false
+						"$ref": "#/definitions/MessageProtocolHandshakeErrorType"
 					}
 				},
 				"connectionPinState": {
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"type": "object",
-						"properties": {
-							"pinState": {
-								"type": "string",
-								"enum": [
-									"required",
-									"optional",
-									"pinOk",
-									"none"
-								]
-							},
-							"inputPermission": {
-								"type": "string",
-								"enum": [
-									"busy",
-									"ok"
-								]
-							}
-						},
-						"additionalProperties": false
+						"$ref": "#/definitions/ConnectionPinStateType"
 					}
 				},
 				"connectionPinInput": {
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"type": "object",
-						"properties": {
-							"pin": {
-								"type": "string",
-								"pattern": "[0-9a-fA-F]{8,16}"
-							}
-						},
-						"additionalProperties": false
+						"$ref": "#/definitions/ConnectionPinInputType"
 					}
 				},
 				"connectionPinError": {
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"type": "object",
-						"properties": {
-							"error": {
-								"type": "integer",
-								"minimum": 0,
-								"maximum": 255
-							}
-						},
-						"additionalProperties": false
+						"$ref": "#/definitions/ConnectionPinErrorType"
 					}
 				},
 				"accessMethodsRequest": {
 					"type": "array",
+					"minItems": 1,
 					"items": {
-						"type": "string"
+						"$ref": "#/definitions/AccessMethodsRequestType"
 					}
 				},
 				"accessMethods": {
 					"type": "array",
 					"minItems": 1,
 					"items": {
+						"$ref": "#/definitions/AccessMethodsType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"MsgTypeDataGroup": {
+			"type": "object",
+			"description": "The websocket binary message will start with byte 2.",
+			"properties": {
+				"data": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/DataType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"MsgTypeEndGroup": {
+			"type": "object",
+			"description": "The websocket binary message will start with byte 3.",
+			"properties": {
+				"connectionClose": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/ConnectionCloseType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"ConnectionHelloPhaseType": {
+			"type": "string",
+			"enum": [
+				"pending",
+				"ready",
+				"aborted"
+			]
+		},
+		"MessageProtocolFormatType": {
+			"type": "string"
+		},
+		"ProtocolHandshakeTypeType": {
+			"type": "string",
+			"enum": [
+				"announceMax",
+				"select"
+			]
+		},
+		"MessageProtocolHandshakeErrorErrorType": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 255
+		},
+		"PinStateType": {
+			"type": "string",
+			"enum": [
+				"required",
+				"optional",
+				"pinOk",
+				"none"
+			]
+		},
+		"PinInputPermissionType": {
+			"type": "string",
+			"enum": [
+				"busy",
+				"ok"
+			]
+		},
+		"PinValueType": {
+			"type": "string",
+			"pattern": "[0-9a-fA-F]{8,16}"
+		},
+		"ConnectionPinErrorErrorType": {
+			"type": "integer",
+			"minimum": 0,
+			"maximum": 255
+		},
+		"ProtocolIdType": {
+			"type": "string"
+		},
+		"ConnectionClosePhaseType": {
+			"type": "string",
+			"enum": [
+				"announce",
+				"confirm"
+			]
+		},
+		"ConnectionCloseReasonType": {
+			"type": "string",
+			"enum": [
+				"unspecific",
+				"removedConnection"
+			]
+		},
+		"ConnectionHelloType": {
+			"type": "object",
+			"properties": {
+				"phase": {
+					"$ref": "#/definitions/ConnectionHelloPhaseType"
+				},
+				"waiting": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 4294967295
+				},
+				"prolongationRequest": {
+					"type": "boolean",
+					"description": "true=request waiting prolongation"
+				}
+			},
+			"additionalProperties": false
+		},
+		"MessageProtocolFormatsType": {
+			"type": "object",
+			"properties": {
+				"format": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/MessageProtocolFormatType"
+					}
+				}
+			},
+			"required": [
+				"format"
+			],
+			"additionalProperties": false
+		},
+		"MessageProtocolHandshakeType": {
+			"type": "object",
+			"properties": {
+				"handshakeType": {
+					"$ref": "#/definitions/ProtocolHandshakeTypeType"
+				},
+				"version": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
 						"type": "object",
 						"properties": {
+							"major": {
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 65535
+							},
+							"minor": {
+								"type": "integer",
+								"minimum": 0,
+								"maximum": 65535
+							}
+						},
+						"additionalProperties": false
+					}
+				},
+				"formats": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/MessageProtocolFormatsType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"MessageProtocolHandshakeErrorType": {
+			"type": "object",
+			"properties": {
+				"error": {
+					"$ref": "#/definitions/MessageProtocolHandshakeErrorErrorType"
+				}
+			},
+			"required": [
+				"error"
+			],
+			"additionalProperties": false
+		},
+		"ConnectionPinStateType": {
+			"type": "object",
+			"properties": {
+				"pinState": {
+					"$ref": "#/definitions/PinStateType"
+				},
+				"inputPermission": {
+					"$ref": "#/definitions/PinInputPermissionType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"ConnectionPinInputType": {
+			"type": "object",
+			"properties": {
+				"pin": {
+					"$ref": "#/definitions/PinValueType"
+				}
+			},
+			"required": [
+				"pin"
+			],
+			"additionalProperties": false
+		},
+		"ConnectionPinErrorType": {
+			"type": "object",
+			"properties": {
+				"error": {
+					"$ref": "#/definitions/ConnectionPinErrorErrorType"
+				}
+			},
+			"required": [
+				"error"
+			],
+			"additionalProperties": false
+		},
+		"HeaderType": {
+			"type": "object",
+			"properties": {
+				"protocolId": {
+					"$ref": "#/definitions/ProtocolIdType"
+				}
+			},
+			"required": [
+				"protocolId"
+			],
+			"additionalProperties": false
+		},
+		"ExtensionType": {
+			"type": "object",
+			"properties": {
+				"extensionId": {
+					"type": "string"
+				},
+				"binary": {
+					"type": "string",
+					"format": "^[0-9,a-f,A-F]*"
+				},
+				"string": {
+					"type": "string"
+				}
+			},
+			"additionalProperties": false
+		},
+		"DataType": {
+			"type": "object",
+			"properties": {
+				"header": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/HeaderType"
+					}
+				},
+				"payload": {
+					"type": "object",
+					"description": "See SPINE Definition"
+				},
+				"extension": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/ExtensionType"
+					}
+				}
+			},
+			"additionalProperties": false
+		},
+		"ConnectionCloseType": {
+			"type": "object",
+			"properties": {
+				"phase": {
+					"$ref": "#/definitions/ConnectionClosePhaseType"
+				},
+				"maxTime": {
+					"type": "integer",
+					"minimum": 0,
+					"maximum": 4294967295
+				},
+				"reason": {
+					"$ref": "#/definitions/ConnectionCloseReasonType"
+				}
+			},
+			"additionalProperties": false
+		},
+		"AccessMethodsRequestType": {
+			"type": "string"
+		},
+		"AccessMethodsType": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"dnsSd_mDns": {
+					"type": "string"
+				},
+				"dns": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"type": "object",
+						"properties": {
+							"uri": {
+								"type": "string"
+							},
 							"id": {
 								"type": "string"
 							},
@@ -188,119 +410,13 @@
 									"properties": {
 										"uri": {
 											"type": "string"
-										},
-										"id": {
-											"type": "string"
-										},
-										"dnsSd_mDns": {
-											"type": "string"
-										},
-										"dns": {
-											"type": "array",
-											"minItems": 1,
-											"items": {
-												"type": "object",
-												"properties": {
-													"uri": {
-														"type": "string"
-													}
-												},
-												"additionalProperties": false
-											}
 										}
 									},
+									"required": [
+										"uri"
+									],
 									"additionalProperties": false
 								}
-							}
-						},
-						"additionalProperties": false
-					}
-				}
-			},
-			"additionalProperties": false
-		},
-		"msgTypeDataGroup": {
-			"type": "object",
-			"description": "The websocket binary message will start with byte 2",
-			"properties": {
-				"data": {
-					"type": "array",
-					"minItems": 1,
-					"items": {
-						"type": "object",
-						"properties": {
-							"header": {
-								"type": "array",
-								"minItems": 1,
-								"items": {
-									"type": "object",
-									"properties": {
-										"protocolId": {
-											"type": "string"
-										}
-									},
-									"additionalProperties": false
-								}
-							},
-							"payload": {
-							    "type": "object",
-								"description": "See SPINE Definition"
-							},
-							"extension": {
-								"type": "array",
-								"minItems": 1,
-								"items": {
-									"type": "object",
-									"properties": {
-										"extensionId": {
-											"type": "string"
-										},
-										"binary": {
-											"type": "string",
-											"format": "^[0-9,a-f,A-F]*"
-										},
-										"string": {
-											"type": "string"
-										}
-									},
-									"additionalProperties": false
-								}
-							}
-						},
-						"additionalProperties": false
-					}
-				}
-			},
-			"additionalProperties": false
-		},
-		"msgTypeEndGroup": {
-			"type": "object",
-			"description": "The websocket binary message will start with byte 3",
-			"properties": {
-				"connectionClose": {
-					"type": "array",
-					"minItems": 1,
-					"items": {
-						"type": "object",
-						"properties": {
-							"phase": {
-								"type": "string",
-								"enum": [
-									"announce",
-									"confirm"
-								]
-							},
-							"maxTime": {
-								"type": "integer",
-								"minimum": 0,
-								"maximum": 4294967295
-							},
-							"reason": {
-								"type": "string",
-								"enum": [
-									"unspecific",
-									"removedConnection"
-								]
 							}
 						},
 						"additionalProperties": false
@@ -309,6 +425,5 @@
 			},
 			"additionalProperties": false
 		}
-	},
-	"additionalProperties": false
+	}
 }
