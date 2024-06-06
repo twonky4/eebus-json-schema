@@ -317,86 +317,84 @@
 			"type": "array",
 			"minItems": 1,
 			"items": {
-				"allOf": [
-					{
-						"$ref": "#/definitions/DeviceAddressType"
+				"type": "object",
+				"properties": {
+					"device": {
+						"$ref": "#/definitions/AddressDeviceType"
 					},
-					{
-						"type": "object",
-						"properties": {
-							"entity": {
-								"type": "array",
-								"items": {
-									"$ref": "#/definitions/AddressEntityType"
-								}
-							}
-						},
-						"additionalProperties": true
+					"entity": {
+						"type": "array",
+						"items": {
+							"$ref": "#/definitions/AddressEntityType"
+						}
 					}
-				]
+				},
+				"additionalProperties": false
 			}
 		},
 		"EntityAddressElementsType": {
 			"type": "array",
 			"minItems": 1,
 			"items": {
-				"allOf": [
-					{
-						"$ref": "#/definitions/DeviceAddressElementsType"
+				"type": "object",
+				"properties": {
+					"device": {
+						"$ref": "#/definitions/ElementTagType"
 					},
-					{
-						"type": "object",
-						"properties": {
-							"entity": {
-								"$ref": "#/definitions/ElementTagType"
-							}
-						},
-						"additionalProperties": true,
+					"entity": {
 						"$ref": "#/definitions/ElementTagType"
 					}
-				]
+				},
+				"additionalProperties": false
 			}
 		},
 		"FeatureAddressType": {
 			"type": "array",
 			"minItems": 1,
 			"items": {
-				"allOf": [
-					{
-						"$ref": "#/definitions/EntityAddressType"
-					},
-					{
-						"type": "object",
-						"properties": {
-							"feature": {
-								"$ref": "#/definitions/AddressFeatureType"
+				"type": "array",
+				"minItems": 1,
+				"items": {
+					"type": "object",
+					"properties": {
+						"device": {
+							"$ref": "#/definitions/AddressDeviceType"
+						},
+						"entity": {
+							"type": "array",
+							"items": {
+								"$ref": "#/definitions/AddressEntityType"
 							}
 						},
-						"additionalProperties": true,
-						"$ref": "#/definitions/feature"
-					}
-				]
+						"feature": {
+							"$ref": "#/definitions/AddressFeatureType"
+						}
+					},
+					"additionalProperties": false
+				}
 			}
 		},
 		"FeatureAddressElementsType": {
 			"type": "array",
 			"minItems": 1,
 			"items": {
-				"allOf": [
-					{
-						"$ref": "#/definitions/EntityAddressElementsType"
-					},
-					{
-						"type": "object",
-						"properties": {
-							"feature": {
-								"$ref": "#/definitions/ElementTagType"
-							}
+				"type": "array",
+				"minItems": 1,
+				"items": {
+					"type": "object",
+					"properties": {
+						"device": {
+							"$ref": "#/definitions/ElementTagType"
 						},
-						"additionalProperties": true,
-						"$ref": "#/definitions/ElementTagType"
-					}
-				]
+						"entity": {
+							"$ref": "#/definitions/ElementTagType"
+						},
+						"feature": {
+							"$ref": "#/definitions/ElementTagType"
+						}
+					},
+					"additionalProperties": false
+				}
 			}
 		},
 		"PossibleOperationsClassifierType": {
@@ -408,41 +406,19 @@
 			},
 			"additionalProperties": false
 		},
-		"PossibleOperationsReadType": {
-			"allOf": [
-				{
-					"$ref": "#/definitions/PossibleOperationsClassifierType"
-				},
-				{
-					"type": "string"
-				}
-			]
-		},
-		"PossibleOperationsWriteType": {
-			"allOf": [
-				{
-					"$ref": "#/definitions/PossibleOperationsClassifierType"
-				},
-				{
-					"type": "string"
-				}
-			]
-		},
 		"PossibleOperationsType": {
 			"type": "object",
 			"properties": {
 				"read": {
 					"type": "array",
-					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/PossibleOperationsReadType"
+						"$ref": "#/definitions/PossibleOperationsClassifierType"
 					}
 				},
 				"write": {
 					"type": "array",
-					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/PossibleOperationsWriteType"
+						"$ref": "#/definitions/PossibleOperationsClassifierType"
 					}
 				}
 			},
@@ -501,30 +477,12 @@
 			"pattern": "_(i:[1-9][0-9]*|n:[a-zA-Z0-9-]+)_[^\\p{Cc}\\p{Cf}\\p{Z}]+"
 		},
 		"AbsoluteOrRelativeTimeType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"type": "string",
-					"pattern": "^(-)?P(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)W)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?$"
-				},
-				{
-					"type": "string",
-					"format": "date-time"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"pattern": "^(-)?P(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)W)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?$|^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])T([01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(\\.\\d+)?(Z|[+-][01]\\d:[0-5]\\d)$"
 		},
 		"RecurringIntervalType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/RecurringIntervalEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values RecurringIntervalEnumType and EnumExtendType"
 		},
 		"RecurringIntervalEnumType": {
 			"type": "string",
@@ -578,16 +536,8 @@
 			]
 		},
 		"OccurrenceType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/OccurrenceEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values OccurrenceEnumType and EnumExtendType"
 		},
 		"OccurrenceEnumType": {
 			"type": "string",
@@ -612,16 +562,8 @@
 			"pattern": "^(-)?P(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)W)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?$"
 		},
 		"CommodityTypeType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/CommodityTypeEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values CommodityTypeEnumType and EnumExtendType"
 		},
 		"CommodityTypeEnumType": {
 			"type": "string",
@@ -640,16 +582,8 @@
 			]
 		},
 		"EnergyDirectionType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/EnergyDirectionEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values EnergyDirectionEnumType and EnumExtendType"
 		},
 		"EnergyDirectionEnumType": {
 			"type": "string",
@@ -659,16 +593,8 @@
 			]
 		},
 		"EnergyModeType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/EnergyModeEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values EnergyModeEnumType and EnumExtendType"
 		},
 		"EnergyModeEnumType": {
 			"type": "string",
@@ -680,16 +606,8 @@
 			]
 		},
 		"UnitOfMeasurementType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/UnitOfMeasurementEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values UnitOfMeasurementEnumType and EnumExtendType"
 		},
 		"UnitOfMeasurementEnumType": {
 			"type": "string",
@@ -791,16 +709,8 @@
 			]
 		},
 		"CurrencyType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/CurrencyEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values CurrencyEnumType and EnumExtendType"
 		},
 		"CurrencyEnumType": {
 			"type": "string",
@@ -1001,16 +911,8 @@
 			"maximum": 4294967295
 		},
 		"ScopeTypeType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/ScopeTypeEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values ScopeTypeEnumType and EnumExtendType"
 		},
 		"ScopeTypeEnumType": {
 			"type": "string",
@@ -1117,16 +1019,8 @@
 			"pattern": "(#[1-9][0-9]*)*"
 		},
 		"DeviceTypeType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/DeviceTypeEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values DeviceTypeEnumType and EnumExtendType"
 		},
 		"DeviceTypeEnumType": {
 			"type": "string",
@@ -1148,16 +1042,8 @@
 			]
 		},
 		"EntityTypeType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/EntityTypeEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values EntityTypeEnumType and EnumExtendType"
 		},
 		"EntityTypeEnumType": {
 			"type": "string",
@@ -1213,16 +1099,8 @@
 			]
 		},
 		"FeatureTypeType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/FeatureTypeEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values FeatureTypeEnumType and EnumExtendType"
 		},
 		"FeatureTypeEnumType": {
 			"type": "string",
@@ -1262,37 +1140,27 @@
 			]
 		},
 		"FeatureSpecificUsageType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/FeatureSpecificUsageEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values FeatureSpecificUsageEnumType and EnumExtendType"
 		},
 		"FeatureSpecificUsageEnumType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/FeatureDirectControlSpecificUsageEnumType"
-				},
-				{
-					"$ref": "#/definitions/FeatureHvacSpecificUsageEnumType"
-				},
-				{
-					"$ref": "#/definitions/FeatureMeasurementSpecificUsageEnumType"
-				},
-				{
-					"$ref": "#/definitions/FeatureSetpointSpecificUsageEnumType"
-				},
-				{
-					"$ref": "#/definitions/FeatureSmartEnergyManagementPsSpecificUsageEnumType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"enum": [
+				"History",
+				"RealTime",
+				"OperationMode",
+				"Overrun",
+				"Contact",
+				"Electrical",
+				"Heat",
+				"Level",
+				"Pressure",
+				"Temperature",
+				"FixedForecast",
+				"FlexibleChosenForecast",
+				"FlexibleOptionalForecast",
+				"OptionalSequenceBasedImmediateControl"
+			]
 		},
 		"FeatureDirectControlSpecificUsageEnumType": {
 			"type": "string",
@@ -1332,16 +1200,8 @@
 			]
 		},
 		"FunctionType": {
-			"type": "object",
-			"oneOf": [
-				{
-					"$ref": "#/definitions/FunctionEnumType"
-				},
-				{
-					"$ref": "#/definitions/EnumExtendType"
-				}
-			],
-			"additionalProperties": false
+			"type": "string",
+			"description": "See for possible values FunctionEnumType and EnumExtendType"
 		},
 		"FunctionEnumType": {
 			"type": "string",

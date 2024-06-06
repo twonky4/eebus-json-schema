@@ -27,26 +27,980 @@
 		"FilterType": {
 			"type": "object",
 			"properties": {
-				"allOf": [
-					{
-						"filterId": {
-							"$ref": "#/definitions/FilterIdType"
-						},
-						"cmdControl": {
-							"type": "array",
-							"minItems": 1,
-							"items": {
-								"$ref": "#/definitions/CmdControlType"
-							}
-						}
-					},
-					{
-						"$ref": "EEBus_SPINE_Technical_Specification_CommandCommonDefinitions_v1.3.0.json#/definitions/DataSelectorsChoiceGroup"
-					},
-					{
-						"$ref": "EEBus_SPINE_Technical_Specification_CommandCommonDefinitions_v1.3.0.json#/definitions/DataElementsChoiceGroup"
+				"filterId": {
+					"$ref": "#/definitions/FilterIdType"
+				},
+				"cmdControl": {
+					"type": "array",
+					"minItems": 1,
+					"items": {
+						"$ref": "#/definitions/CmdControlType"
 					}
-				]
+				},
+				"alarmListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"billConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"billDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"billListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"bindingManagementEntryListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"commodityListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceConfigurationKeyValueConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceConfigurationKeyValueDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceConfigurationKeyValueListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"directControlActivityListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionCharacteristicListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionParameterDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionPermittedValueSetListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionStateListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacOperationModeDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacOverrunDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacOverrunListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionOperationModeRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionPowerSequenceRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionSetpointRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"identificationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveTableConstraintsDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveTableDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveTableDescriptionDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlEventListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlLimitConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlLimitDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlLimitListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlStateListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementSeriesListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementThresholdRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"messagingListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementDeviceDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementEntityDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementFeatureDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementBindingDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementDestinationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementDetailedDiscoveryDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementSubscriptionDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementUseCaseDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsDurationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsInterruptListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsPowerDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsPowerLevelListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsPowerRangeListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsResumeImplicationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceAlternativesRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequencePriceListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceScheduleConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceScheduleListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceSchedulePreferenceListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceStateListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerTimeSlotScheduleConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerTimeSlotScheduleListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"powerTimeSlotValueListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"sensingListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"sessionIdentificationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"sessionMeasurementRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"setpointConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"setpointDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"setpointListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsPriceDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"specificationVersionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"stateInformationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"subscriptionManagementEntryListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"supplyConditionDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"supplyConditionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"supplyConditionThresholdRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffBoundaryRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffTierRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementJobDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementJobListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementJobRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"thresholdConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"thresholdDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"thresholdListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"tierBoundaryDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"tierBoundaryListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"tierDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"tierIncentiveRelationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"tierListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"timeSeriesConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"timeSeriesDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"timeSeriesListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"timeTableConstraintsListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"timeTableDescriptionListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"timeTableListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"useCaseInformationListDataSelectors": {
+					"type": "array",
+					"items": {}
+				},
+				"actuatorLevelDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"actuatorLevelDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"actuatorSwitchDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"actuatorSwitchDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"alarmDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"billConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"billDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"billDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"bindingManagementDeleteCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"bindingManagementEntryDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"bindingManagementRequestCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"commodityDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"dataTunnelingCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceClassificationManufacturerDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceClassificationUserDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceConfigurationKeyValueConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceConfigurationKeyValueDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceConfigurationKeyValueDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceDiagnosisHeartbeatDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceDiagnosisServiceDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceDiagnosisStateDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"directControlActivityDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"directControlDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionCharacteristicDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionParameterDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionPermittedValueSetDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionStateDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacOperationModeDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacOverrunDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacOverrunDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionOperationModeRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionPowerSequenceRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionSetpointRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"identificationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveTableConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveTableDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveTableDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlEventDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlLimitConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlLimitDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlLimitDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlNodeDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlStateDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementSeriesDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementThresholdRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"messagingDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementAbortCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementAddNodeCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementDeviceDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementDiscoverCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementEntityDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementFeatureDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementJoiningModeDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementModifyNodeCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementProcessStateDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementRemoveNodeCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementReportCandidateDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementScanNetworkCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementBindingDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementBindingDeleteCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementBindingRequestCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementDestinationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementDetailedDiscoveryDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementSubscriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementSubscriptionDeleteCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementSubscriptionRequestCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementUseCaseDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsDurationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsInterruptDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsPowerDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsPowerLevelDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsPowerRangeDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsResumeImplicationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceAlternativesRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceNodeScheduleInformationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequencePriceCalculationRequestCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequencePriceDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceScheduleConfigurationRequestCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceScheduleConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceScheduleDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceSchedulePreferenceDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceStateDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerTimeSlotScheduleConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerTimeSlotScheduleDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"powerTimeSlotValueDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"sensingDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"sensingDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"sessionIdentificationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"sessionMeasurementRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"setpointConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"setpointDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"setpointDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsConfigurationRequestCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsPriceCalculationRequestCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsPriceDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"specificationVersionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"stateInformationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"subscriptionManagementDeleteCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"subscriptionManagementEntryDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"subscriptionManagementRequestCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"supplyConditionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"supplyConditionDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"supplyConditionThresholdRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffBoundaryRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffOverallConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffTierRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementJobDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementJobDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementJobRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementOverviewDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"thresholdConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"thresholdDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"thresholdDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tierBoundaryDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tierBoundaryDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tierDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tierDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"tierIncentiveRelationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timeDistributorDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timeDistributorEnquiryCallElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timeInformationDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timePrecisionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timeSeriesConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timeSeriesDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timeSeriesDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timeTableConstraintsDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timeTableDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"timeTableDescriptionDataElements": {
+					"type": "array",
+					"items": {}
+				},
+				"useCaseInformationDataElements": {
+					"type": "array",
+					"items": {}
+				}
 			},
 			"additionalProperties": false
 		},
@@ -73,47 +1027,600 @@
 		"CmdType": {
 			"type": "object",
 			"properties": {
-				"allOf": [
-					{
-						"$ref": "#/definitions/CmdOptionGroup"
-					},
-					{
-						"$ref": "EEBus_SPINE_Technical_Specification_CommandCommonDefinitions_v1.3.0.json#/definitions/DataChoiceGroup"
-					},
-					{
-						"$ref": "#/definitions/DataExtendGroup"
-					}
-				]
-			},
-			"additionalProperties": false
-		},
-		"CmdOptionGroup": {
-			"function": {
-				"type": "array",
-				"minItems": 1,
-				"items": {
-					"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/FunctionType"
-				}
-			},
-			"filter": {
-				"type": "array",
-				"items": {
+				"function": {
 					"type": "array",
 					"minItems": 1,
 					"items": {
-						"$ref": "#/definitions/FilterType"
+						"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/FunctionType"
 					}
+				},
+				"filter": {
+					"type": "array",
+					"items": {
+						"type": "array",
+						"minItems": 1,
+						"items": {
+							"$ref": "#/definitions/FilterType"
+						}
+					}
+				},
+				"actuatorLevelData": {
+					"type": "array",
+					"items": {}
+				},
+				"actuatorLevelDescriptionData": {
+					"type": "array",
+					"items": {}
+				},
+				"actuatorSwitchData": {
+					"type": "array",
+					"items": {}
+				},
+				"actuatorSwitchDescriptionData": {
+					"type": "array",
+					"items": {}
+				},
+				"alarmListData": {
+					"type": "array",
+					"items": {}
+				},
+				"billConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"billDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"billListData": {
+					"type": "array",
+					"items": {}
+				},
+				"bindingManagementDeleteCall": {
+					"type": "array",
+					"items": {}
+				},
+				"bindingManagementEntryListData": {
+					"type": "array",
+					"items": {}
+				},
+				"bindingManagementRequestCall": {
+					"type": "array",
+					"items": {}
+				},
+				"commodityListData": {
+					"type": "array",
+					"items": {}
+				},
+				"dataTunnelingCall": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceClassificationManufacturerData": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceClassificationUserData": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceConfigurationKeyValueConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceConfigurationKeyValueDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceConfigurationKeyValueListData": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceDiagnosisHeartbeatData": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceDiagnosisServiceData": {
+					"type": "array",
+					"items": {}
+				},
+				"deviceDiagnosisStateData": {
+					"type": "array",
+					"items": {}
+				},
+				"directControlActivityListData": {
+					"type": "array",
+					"items": {}
+				},
+				"directControlDescriptionData": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionCharacteristicListData": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionParameterDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionPermittedValueSetListData": {
+					"type": "array",
+					"items": {}
+				},
+				"electricalConnectionStateListData": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacOperationModeDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacOverrunDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacOverrunListData": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionOperationModeRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionPowerSequenceRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"hvacSystemFunctionSetpointRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"identificationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveListData": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveTableConstraintsData": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveTableData": {
+					"type": "array",
+					"items": {}
+				},
+				"incentiveTableDescriptionData": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlEventListData": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlLimitConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlLimitDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlLimitListData": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlNodeData": {
+					"type": "array",
+					"items": {}
+				},
+				"loadControlStateListData": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementListData": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementSeriesListData": {
+					"type": "array",
+					"items": {}
+				},
+				"measurementThresholdRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"messagingListData": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementAbortCall": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementAddNodeCall": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementDeviceDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementDiscoverCall": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementEntityDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementFeatureDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementJoiningModeData": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementModifyNodeCall": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementProcessStateData": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementRemoveNodeCall": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementReportCandidateData": {
+					"type": "array",
+					"items": {}
+				},
+				"networkManagementScanNetworkCall": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementBindingData": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementBindingDeleteCall": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementBindingRequestCall": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementDestinationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementDetailedDiscoveryData": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementSubscriptionData": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementSubscriptionDeleteCall": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementSubscriptionRequestCall": {
+					"type": "array",
+					"items": {}
+				},
+				"nodeManagementUseCaseData": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsDurationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsInterruptListData": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsPowerDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsPowerLevelListData": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsPowerRangeListData": {
+					"type": "array",
+					"items": {}
+				},
+				"operatingConstraintsResumeImplicationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceAlternativesRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceNodeScheduleInformationData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequencePriceCalculationRequestCall": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequencePriceListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceScheduleConfigurationRequestCall": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceScheduleConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceScheduleListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceSchedulePreferenceListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerSequenceStateListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerTimeSlotScheduleConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerTimeSlotScheduleListData": {
+					"type": "array",
+					"items": {}
+				},
+				"powerTimeSlotValueListData": {
+					"type": "array",
+					"items": {}
+				},
+				"resultData": {
+					"type": "array",
+					"items": {}
+				},
+				"sensingDescriptionData": {
+					"type": "array",
+					"items": {}
+				},
+				"sensingListData": {
+					"type": "array",
+					"items": {}
+				},
+				"sessionIdentificationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"sessionMeasurementRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"setpointConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"setpointDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"setpointListData": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsConfigurationRequestCall": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsData": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsPriceCalculationRequestCall": {
+					"type": "array",
+					"items": {}
+				},
+				"smartEnergyManagementPsPriceData": {
+					"type": "array",
+					"items": {}
+				},
+				"specificationVersionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"stateInformationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"subscriptionManagementDeleteCall": {
+					"type": "array",
+					"items": {}
+				},
+				"subscriptionManagementEntryListData": {
+					"type": "array",
+					"items": {}
+				},
+				"subscriptionManagementRequestCall": {
+					"type": "array",
+					"items": {}
+				},
+				"supplyConditionDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"supplyConditionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"supplyConditionThresholdRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffBoundaryRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffListData": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffOverallConstraintsData": {
+					"type": "array",
+					"items": {}
+				},
+				"tariffTierRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementJobDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementJobListData": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementJobRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"taskManagementOverviewData": {
+					"type": "array",
+					"items": {}
+				},
+				"thresholdConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"thresholdDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"thresholdListData": {
+					"type": "array",
+					"items": {}
+				},
+				"tierBoundaryDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"tierBoundaryListData": {
+					"type": "array",
+					"items": {}
+				},
+				"tierDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"tierIncentiveRelationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"tierListData": {
+					"type": "array",
+					"items": {}
+				},
+				"timeDistributorData": {
+					"type": "array",
+					"items": {}
+				},
+				"timeDistributorEnquiryCall": {
+					"type": "array",
+					"items": {}
+				},
+				"timeInformationData": {
+					"type": "array",
+					"items": {}
+				},
+				"timePrecisionData": {
+					"type": "array",
+					"items": {}
+				},
+				"timeSeriesConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"timeSeriesDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"timeSeriesListData": {
+					"type": "array",
+					"items": {}
+				},
+				"timeTableConstraintsListData": {
+					"type": "array",
+					"items": {}
+				},
+				"timeTableDescriptionListData": {
+					"type": "array",
+					"items": {}
+				},
+				"timeTableListData": {
+					"type": "array",
+					"items": {}
+				},
+				"useCaseInformationListData": {
+					"type": "array",
+					"items": {}
+				},
+				"manufacturerSpecificExtension": {
+					"type": "string",
+					"format": "^[0-9,a-f,A-F]*"
+				},
+				"lastUpdateAt": {
+					"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/AbsoluteOrRelativeTimeType"
 				}
-			}
-		},
-		"DataExtendGroup": {
-			"manufacturerSpecificExtension": {
-				"type": "string",
-				"format": "^[0-9,a-f,A-F]*"
 			},
-			"lastUpdateAt": {
-				"$ref": "EEBus_SPINE_Technical_Specification_CommonDataTypes_v1.3.0.json#/definitions/AbsoluteOrRelativeTimeType"
-			}
+			"additionalProperties": false
 		}
 	}
 }
